@@ -1,0 +1,443 @@
+<h1> Mobile Article Aggregator Platform (MAP)</h1><br><br><hr><br>
+
+Mobile Article Aggregator Platform 是一个面向移动端内容聚合与分发场景的开源技术资源导航站。该项目定位于为开发者、技术研究人员以及内容运营团队提供结构化的移动端文章链接索引与快速检索能力，解决移动端技术文章分散、检索效率低下、域名迁移频繁导致链接失效等实际问题。
+
+项目本身不存储任何文章内容，仅作为外链元数据的索引层与展示层，通过静态化的资源列表与分类标签体系，帮助用户在海量移动端技术文档中快速定位目标资源。目标用户包括移动端开发工程师、全栈技术学习者、技术博客维护者以及企业内部知识库管理人员。
+
+<h2>功能概览</h2><br>
+
+<p><h3>海量链接索引管理</h3>：支持对超过 250 条移动端技术文章链接进行集中存储与分类展示，覆盖多种技术子领域。</p>
+
+<p><h3>静态化资源列表呈现</h3>：所有链接以纯 Markdown 形式维护于项目仓库中，无需数据库依赖，便于版本控制与协作编辑。</p>
+
+<p><h3>分类标签体系</h3>：根据文章主题、技术栈或访问热度对链接进行逻辑分组，降低用户筛选成本。</p>
+
+<p><h3>快速检索入口</h3>：提供基于文章 ID 或路径关键字的本地搜索功能，提升链接定位速度。</p>
+
+<p><h3>链接状态检测工具</h3>：集成可选的定时检测脚本，自动标记可能失效或响应异常的链接，保障资源列表的有效性。</p>
+
+<p><h3>移动端适配展示</h3>：前端模板针对手机和平板设备进行优化，确保在移动浏览器上获得良好的阅读与导航体验。</p>
+
+<p><h3>开源协作扩展机制</h3>：支持社区用户通过提交 Issue 或 Pull Request 的方式新增、更新或删除链接条目，保持资源列表的时效性。</p>
+
+<p><h3>轻量化部署能力</h3>：项目整体基于静态文件生成，可托管于任何支持 HTTP 服务的平台，包括 GitHub Pages、Cloudflare Pages 或自建 Nginx 服务器。</p>
+
+<h2>应用场景</h2><br>
+
+技术团队内部知识库建设：企业内部的技术团队可将本项目作为基础框架，整理团队内部积累的移动端技术文章链接，形成统一的知识索引入口，减少重复的文档查找工作。
+
+个人技术博客的友情链接扩展：独立技术博客作者可利用本项目的资源列表作为博客侧边栏的补充，为读者提供更多外部阅读资源，同时降低博客维护外链的复杂度。
+
+技术社区的内容聚合展示：技术社区运营方可基于本项目快速搭建文章推荐专区，将社区内的高质量技术帖按分类进行外链汇总，提升社区内容的曝光率与复用率。
+
+技术培训课程的参考资料索引：培训机构或技术讲师可将本项目作为课程参考资料库，将课程中涉及的外部延伸阅读链接统一整理到项目列表中，方便学员课后查阅。
+
+开源项目文档的关联资源导航：开源项目维护者可在项目文档中引用本项目的资源列表，为使用者提供相关的技术背景阅读材料，丰富项目的辅助信息生态。
+
+<h2>快速开始</h2><br>
+
+以下步骤将帮助您在本地环境快速部署并运行本项目的静态站点。
+
+# 1. 克隆项目仓库到本地
+git clone https://github.com/example/mobile-article-aggregator.git
+cd mobile-article-aggregator
+
+# 2. 安装项目依赖（基于 Node.js 环境）
+npm install
+
+# 3. 运行本地开发服务器，默认监听端口 3000
+npm run dev
+
+执行上述命令后，在浏览器中访问 `http://localhost:3000` 即可查看资源列表页面。如需构建生产环境静态文件，请执行 `npm run build`，生成的静态资源位于 `dist` 目录下。
+
+<h2>安装要求</h2><br>
+
+| 依赖项 | 必需版本 | 说明 |
+|--------|----------|------|
+| Node.js | 18.0 及以上 | 项目构建工具与开发服务器运行环境 |
+| npm | 8.0 及以上 | Node.js 包管理器，用于安装项目依赖 |
+| Git | 2.30 及以上 | 用于克隆仓库与版本管理 |
+| 现代浏览器 | Chrome 90+ / Firefox 88+ | 前端页面访问与调试支持 |
+| HTTP 服务器 | 任意静态文件服务 | 生产环境托管构建后的静态文件，如 Nginx、Caddy 或 Apache |
+| 可选：Shell 环境 | Bash 4.0+ | 运行链接状态检测脚本（位于 scripts/ 目录） |
+
+<h2>文档导航</h2><br>
+
+| 层面 | 目录 | 回答的问题 |
+|------|------|------------|
+| 用户入门 | docs/getting-started.md | 如何使用本项目的资源列表？如何通过分类标签快速找到所需文章？ |
+| 维护者指南 | docs/maintenance.md | 如何新增、修改或删除链接条目？链接格式校验规则是什么？ |
+| 开发贡献 | docs/contributing.md | 如何搭建开发环境？代码风格规范与提交信息格式要求有哪些？ |
+| 部署运维 | docs/deployment.md | 如何将站点部署到生产服务器？如何配置自定义域名与 HTTPS？ |
+
+<h2>资源列表</h2><br>
+
+<h3>移动端技术文章链接汇总</h3><br>
+
+以下列表收录了本批次（第 8/24 批，共300 个资源链接）的全部移动端文章外链。所有链接均按照用户提供的原始格式原样呈现，未做任何协议、域名或路径的改动。
+
+www.blog.sjzpssw.cn/Article/details/64035738.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/80014760.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/13809036.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/53874213.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/23502731.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/89147962.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/53397040.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/94792282.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/26179380.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/68719088.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/35049840.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/86150261.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/68332190.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/24243607.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/83521696.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/72363303.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/64664443.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/56574985.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/13908965.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/21086239.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/72566277.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/10277286.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/20295327.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/49861518.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/76776258.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/81466737.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/85694814.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/20750288.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/68641099.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/10817494.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/72631105.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/00688436.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/89886660.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/18796100.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/15758499.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/21951177.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/75732777.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/68395010.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/16012062.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/59532400.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/14083000.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/27253117.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/83542992.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/05495048.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/73840026.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/49811674.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/89527558.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/94795863.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/96444303.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/21283689.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/02730315.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/84924202.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/53906303.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/32176820.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/09498562.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/19175384.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/32158496.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/72543639.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/62149922.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/21054655.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/64019111.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/98668030.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/23558375.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/72147340.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/16732045.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/38302145.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/42443582.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/34022884.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/08392443.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/96887486.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/57213298.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/42436577.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/71084411.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/32810297.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/05472604.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/75721341.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/45614984.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/38944735.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/93657638.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/32496950.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/91742181.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/20839425.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/16184768.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/35628595.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/02541306.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/23282025.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/13542462.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/09817006.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/41095414.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/08210885.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/83137911.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/91602355.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/94322622.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/42087333.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/72873428.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/24037916.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/38686478.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/09861601.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/50955999.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/91924189.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/28402384.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/50530318.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/72579112.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/02405100.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/13163240.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/49776511.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/31075291.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/20651709.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/17605335.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/33246774.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/95021613.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/02009825.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/12400221.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/51010558.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/49865293.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/19419119.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/68941991.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/02108479.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/16584153.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/45387625.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/21673264.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/18093763.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/27292618.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/87109223.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/96445078.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/83517953.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/60450045.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/32558061.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/27840694.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/53539833.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/23918708.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/45463588.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/08064828.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/31648177.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/64501718.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/53742122.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/13532544.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/05357309.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/68383740.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/05744681.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/80981351.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/80576542.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/05722122.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/83976932.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/21215070.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/31325687.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/20947618.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/16656660.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/08409992.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/01928673.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/87543649.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/35095403.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/39003524.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/49939170.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/20954950.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/27922415.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/71465124.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/42300028.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/19849823.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/21364944.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/05693332.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/35863201.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/49461440.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/79123221.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/50645432.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/76398729.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/94362620.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/21432433.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/49715374.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/38655033.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/43078518.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/54664048.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/03709628.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/83554603.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/94655271.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/01031111.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/93149924.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/68062049.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/73628173.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/09100203.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/99739255.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/38779245.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/49424779.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/78517920.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/79100815.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/20490617.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/72124818.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/80891416.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/45562242.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/60694411.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/34793939.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/94647645.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/46416777.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/76809507.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/79868228.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/87248638.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/05805224.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/34627998.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/90310994.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/43513957.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/45091451.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/98438014.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/61064517.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/49116325.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/31232473.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/38144393.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/09333574.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/64322406.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/32403181.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/02100663.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/37999881.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/16114377.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/57517088.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/68022063.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/43873927.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/72280994.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/94094670.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/50584214.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/21745954.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/06108857.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/79403787.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/61661597.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/79442142.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/51966778.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/32794476.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/30925997.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/35928116.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/28036106.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/15174006.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/56955057.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/60257364.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/53206364.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/40924013.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/12465112.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/98916533.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/53277963.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/49102853.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/57711722.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/90852910.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/05007968.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/23284638.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/46162833.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/10182651.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/30210943.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/97636824.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/44365150.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/19528111.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/46321844.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/03206465.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/38380586.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/20358056.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/52513308.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/19476273.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/68396228.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/80773880.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/48601688.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/31081143.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/97600735.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/59557819.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/61062114.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/54303689.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/90369494.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/80221108.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/32810264.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/10888761.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/87181404.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/56175046.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/84036524.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/08709227.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/54589506.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/43773363.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/65358543.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/78917424.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/24749630.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/91058360.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/16801369.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/18764648.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/30291257.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/02803268.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/36116606.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/65356690.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/72142175.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/97846673.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/83887052.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/91443386.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/86221618.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/09857960.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/76102120.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/31006214.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/19503206.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/16868184.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/59843519.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/31397362.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/24390229.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/38398484.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/45176585.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/19799586.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/61948752.SHtML<br>
+www.blog.sjzpssw.cn/Article/details/59853924.SHtML<br>
+
+<h2>项目结构</h2><br>
+
+项目目录采用模块化分层设计，便于维护与扩展。各子目录职责清晰，核心资源列表与前端展示逻辑分离。
+
+
+mobile-article-aggregator/
+├── public/                          # 静态资源目录，无需构建直接复制
+│   ├── favicon.ico                  # 站点图标文件
+│   └── robots.txt                   # 搜索引擎爬虫规则，屏蔽非生产环境路径
+├── src/                             # 源代码主目录
+│   ├── assets/                      # 前端资源文件（图片、字体、全局样式）
+│   │   ├── images/                  # 项目用到的矢量图与位图素材
+│   │   └── styles/                  # 全局基础样式与 CSS 变量定义
+│   ├── components/                  # 可复用的 UI 组件
+│   │   ├── LinkList.vue             # 链接列表核心渲染组件，支持分页与过滤
+│   │   ├── SearchBar.vue            # 关键字搜索输入组件
+│   │   └── CategoryFilter.vue       # 分类标签筛选组件
+│   ├── data/                        # 数据层，存放静态链接资源列表
+│   │   ├── links.json               # 主链接索引文件，包含全部 250 条记录
+│   │   └── categories.json          # 分类映射表，定义标签与链接 ID 的对应关系
+│   ├── layouts/                     # 页面布局模板
+│   │   ├── default.vue              # 默认两栏布局（侧边栏 + 主内容区）
+│   │   └── full-width.vue           # 全宽布局，用于搜索与统计页面
+│   ├── pages/                       # 路由页面入口
+│   │   ├── index.vue                # 首页，展示全部资源列表与分类概览
+│   │   ├── about.vue                # 项目介绍与使用说明页面
+│   │   └── stats.vue                # 链接统计信息页面（总数、分类分布）
+│   ├── utils/                       # 工具函数库
+│   │   ├── validator.js             # 链接格式校验与规范化工具
+│   │   └── filter.js                # 数组过滤与排序辅助函数
+│   └── main.js                      # 应用入口文件，初始化 Vue 实例与插件
+├── scripts/                         # 运维与辅助脚本
+│   ├── check-links.sh               # 批量检测链接可用性的 Bash 脚本
+│   └── generate-sitemap.js          # 生成站点地图 XML 文件的 Node 脚本
+├── tests/                           # 单元测试与集成测试
+│   ├── unit/                        # 组件与函数的单元测试用例
+│   └── e2e/                         # 端到端测试脚本（基于 Playwright）
+├── .gitignore                       # Git 版本忽略规则文件
+├── package.json                     # Node.js 项目依赖与脚本定义
+├── README.md                        # 项目说明文档（本文件）
+├── LICENSE                          # MIT 许可证全文
+└── vite.config.js                   # Vite 构建工具配置文件
+
+
+<h2> 贡献指南</h2><br>
+
+我们欢迎社区开发者以多种形式参与本项目的维护与改进。所有贡献需遵守项目行为准则，并按照以下流程操作。
+
+第一步：查阅现有 Issue 与 Pull Request。在提交新贡献之前，请先浏览 GitHub 上的现有议题，确认无人正在处理相同问题或功能请求，避免重复劳动。
+
+第二步：Fork 项目并创建功能分支。将本仓库 Fork 至个人账号下，然后基于 `main` 分支创建一个新的分支，分支命名建议采用 `feature/功能描述` 或 `fix/问题简述` 的格式。
+
+第三步：完成代码或文档修改。请遵循项目既定的代码风格（ESLint 配置）与提交信息规范（使用 Conventional Commits 格式）。若涉及链接列表的增删，请同步更新 `src/data/links.json` 中的对应条目。
+
+第四步：编写或更新测试用例。对于新增的功能或修复的缺陷，请在 `tests/` 目录下补充相应的单元测试或端到端测试，确保代码覆盖率不下降。
+
+第五步：提交 Pull Request。推送本地分支到远程仓库后，向本项目的 `main` 分支发起 Pull Request，并在描述中清晰说明修改内容、动机以及相关 Issue 编号。项目维护者会在三个工作日内进行审阅。
+
+<h2>常见问题</h2><br>
+
+问：如何快速判断某条链接是否仍然有效？
+
+答：项目根目录下的 `scripts/check
+
+> 外链数量: 350 | 生成时间:2026-09-2702:25:21
